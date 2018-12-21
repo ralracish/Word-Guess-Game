@@ -20,6 +20,9 @@ var answerArray = [];
  answerArray[i] = "_";
 
 //Ask the player for a letter. Give 5 chances
+document.getElementById="#currentword"
+document.onkeyup = function(event) {
+    var keyPressed = event.key.toLowerCase ();
 var letters = []
 for(var i = 0; i < 5; i++)
     letters.push(prompt("Guess the word! Type your letter!"));
@@ -29,12 +32,8 @@ for(var i = 0; i < 5; i++)
     } else {
         noLetter = "No. Pick another letter!"
         //put below Letters Already Guessed
+        document.getElementById="#lettersguesssed"
     }
-
-//If player wins or loses, play a sound and automatically start another word
-
-
-
 
 //Ask for another letter telling player how many more guesses they have
 var remainingLetters = word.length;
@@ -43,6 +42,14 @@ while (remainingLetters > 0) {
     && var guess.toLowerCase=10-i;
     alert("Guess the word! Type your letter. You have (10-i) guesses!")
 }
+//If player wins or loses, play a sound and automatically start another word
+if win document.getElementById="#wins" ()
+
+
+
+
+
+
 
 
 
