@@ -11,18 +11,25 @@
 //         case 32:
 //         break;
 // }
-// }
-
+var $ = function (id) {
+    return document.getElementById(id);
+}
 // //Set array of possible coffeeshop words
 var coffeeWords = ["coffee", "macchiato", "americano", "mocha", "beans", "cream", "sugar", "cappucino", "latte", "barista", "crema", "espresso", "filter", "redeye"];
-var guessedLetters = []; //array for letters guessed
-var startBtn = document.getElementById('startBtn');
+var guessedLetters = answer.split('');
+startBtn = document.getElementById('startBtn');
 var youWin = 0;
 var youLose = 0;
-var remainingGuesses = 7;
+var remainingGuesses = 10
 var answer;
 var answerArray;
 var newAnswer;
+var myLength=answer.length;
+var display=[myLength];
+var win=myLength;
+
+
+console.log(answer);
 
 // resetGame();--tried to put these in down below for resetting display, but not sure it works. can't get past 
 // display();
@@ -30,29 +37,64 @@ var newAnswer;
 // initialize}
 
 
-function initialize() {
+// function initialize() {
     //Pick a random word from the array
-    var choice = Math.floor(Math.random() * coffeeWords.length);
-    answer = coffeeWords[choice];
-    console.log (answer);
+    // var choice = Math.floor(Math.random() * coffeeWords.length);
+    // answer = coffeeWords[choice];
+    // console.log (answer);
 
     //Put the number of dashes on the screen for the word
 
-    answerArray = "";
-
-    for (var i = 0; i < answer.length; i++) {
-        answerArray = answerArray + "_";
+var setup = function()
+{
+       for (var i = 0; i < answer.length; i++) {
+        display[i] = "_";
+        output = output + display[i];
         console.log(answerArray)
     }
-    document.getElementById("currentWord").innerHTML = answerArray;
+    document.getElementById("currentWord").innerHTML = output;
+    output = "";
+}
+
+window.onload = function()
+{
+    setup = function()
+}
+var submit = function()
+{
+    output = "";
+    userLetter=$("letter").value;
+    $("letter").value = "";
+
+    for (var c=0; c< answer.length; c++)
+        {
+            display[c] = userLetter.toLowerCase();
+            win--;
+        }
+}
+document.getElementById("game").innerHTML = output;
+output = "";
+attemptsLeft--;
+
+if (win < 1)
+{;
+    document.getElementById("totalWins").innerHTML = "You Win!!!"
+}
+else if (attemptsLeft < 1)
+{
+    document.getElementById("totalLosses").innerHTML = "You Lose!!!"
+}
+else{
+    document.getElementById("remainingGuesses").innerHTML = "You have " + attemptsLeft + " guesses left";
+}
 }
 //Ask the player for a letter.
- document.onkeyup = function(event) {
+//  document.onkeyup = function(event) {
     // console.log(event)
-    var userChoice = event.key;
-    console.log(userChoice)
-     checkLetters(userChoice)
-}
+    // var userChoice = event.key;
+    // console.log(userChoice)
+    //  checkLetters(userChoice)
+// }
 // ----------------------------------------------------
 //WHAT I FOUND ON STACK OVERFLOW FOR REPLACING ALL OCCURENCES OF A CHARACTER
 
@@ -106,28 +148,28 @@ function initialize() {
 //     var target = this;
 //     return target.split(search).join(replacement);
 // };
-String.prototype.replaceAt=function(index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
+// String.prototype.replaceAt=function(index, replacement) {
+//     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+// }
 // //Call out function to guess letters
- function checkLetters(userChoice) {
-     guessedLetters.push(userChoice)
+//  function checkLetters(userChoice) {
+//      guessedLetters.push(userChoice)
  
     //  console.log(newAnswer);
-     answerArray = document.getElementById('currentWord').innerText;
-     console.log(answerArray);
-     var newAnswer=answerArray.replaceAt(answer.indexOf(userChoice),userChoice);
+//      answerArray = document.getElementById('currentWord').innerText;
+//      console.log(answerArray);
+//      var newAnswer=answerArray.replaceAt(answer.indexOf(userChoice),userChoice);
     
-    document.getElementById("currentWord").innerHTML = newAnswer;
- }
+//     document.getElementById("currentWord").innerHTML = newAnswer;
+//  }
 
 //Give 7 letter guesses and push to empty array 
 // answer.indexOf()
 
 //If guessed letter is correct, then join correct letter with "_" on answer
-    if (guessedLetters === true){
-        document.getElementbyId("currentWord").innerHTML = answerArray.join (answer["_"]);
-    }
+    // if (guessedLetters === true){
+    //     document.getElementbyId("currentWord").innerHTML = answerArray.join (answer["_"]);
+    // }
         //alert to guess another letter
         // alert("Good job! Guess another letter!");
     // } 
@@ -150,4 +192,4 @@ String.prototype.replaceAt=function(index, replacement) {
 //     else {
 //         alert("#gameover-image")
 //         youLose = youLose--;
-//         guessLetters;
+//         guessLetters;d
