@@ -1,145 +1,76 @@
 //Javascript Document
 //Ask the person's name and say hello
-//var name=prompt("What's your name");
-//alert("Hello " + name + ". Play the game!");
-
-// //Start the game
-
-// document.addEventListener("spacebar",startGame, false);
-// function startGame(e){
-//     switch(e.keyCode){  
-//         case 32:
-//         break;
-// }
-// }
-
-// //Set array of possible coffeeshop words
-var coffeeWords = ["coffee", "macchiato", "americano", "mocha", "beans", "cream", "sugar", "cappucino", "latte", "barista", "crema", "espresso", "filter", "redeye"];
-var guessedLetters = []; //array for letters guessed
-var startBtn = document.getElementById('startBtn');
-var youWin = 0;
-var youLose = 0;
-var remainingGuesses = 7;
-var answer;
-var answerArray;
-var newAnswer;
-
-// resetGame();--tried to put these in down below for resetting display, but not sure it works. can't get past 
-// display();
-// document.querySelector("startBtn").addEventListener('click', function() {
-// initialize}
+// var name=prompt("What's your name");
+// alert("Hello " + name + ". Play the game!");
 
 
-function initialize() {
-    //Pick a random word from the array
-    var choice = Math.floor(Math.random() * coffeeWords.length);
-    answer = coffeeWords[choice];
-    console.log (answer);
+// Set array of possible coffeeshop words
+    var word = ["mocha", "beans", "cream", "sugar", "crema", "filter", "cup", "tea", "splenda","roast", "body", "blend","drip","flavor"];
+// Choose word randomly
+    var choice = Math.floor(Math.random() * word.length);
+    var answer = word[choice]
+//Other variables
+    var rightGuess = [];
+    var wrongGuess = [];
+    var underScore = [];
 
-    //Put the number of dashes on the screen for the word
+//DOM manipulation
+var docUnderScore = document.getElementsByClassName("underScore");
+var docrightGuess = document.getElementsByClassName("rightGuess");
+var docwrongGuess = document.getElementsByClassName("wrongGuess");
 
-    answerArray = "";
+//Testing
+console.log(answer);
 
-    for (var i = 0; i < answer.length; i++) {
-        answerArray = answerArray + "_";
-        console.log(answerArray)
+//Create underscores based on length of word
+    var generateUnderscore = () => {
+        for(var i = 0; i < answer.length; i++) {
+            underScore.push(' _ ');
+        }
+        return underScore;
     }
-    document.getElementById("currentWord").innerHTML = answerArray;
-}
-//Ask the player for a letter.
- document.onkeyup = function(event) {
-    // console.log(event)
-    var userChoice = event.key;
-    console.log(userChoice)
-     checkLetters(userChoice)
-}
-// ----------------------------------------------------
-//WHAT I FOUND ON STACK OVERFLOW FOR REPLACING ALL OCCURENCES OF A CHARACTER
+console.log(generateUnderscore());
 
-// function replaceSubstring(inSource, inToReplace, inReplaceWith) {
-
-//     var outString = inSource;
-//     while (true) {
-//       var idx = outString.indexOf(inToReplace);
-//       if (idx == -1) {
-//         break;
-//       }
-//       outString = outString.substring(0, idx) + inReplaceWith +
-//         outString.substring(idx + inToReplace.length);
-//     }
-//     return outString;
-// 
-// MY VERSION TRYING OT REPLACE VARIABLES. I TRIED PUTTING VARIABLES IN OTHER PLACES, TOO.
-// function replaceSubstring(answerArray, answer, userChoice) {
-
-//   var newAnswer = answerArray;
-//   while (true) {
-//     var idx = newAnswer.indexOf(answer);
-//     if (idx == -1) {
-//       break;
-//     }
-//     newAnswer = newAnswer.substring(0, idx) + userChoice +
-//       newAnswer.substring(idx + answer.length);
-//   }
-//   return newAnswer;
-// }
-// ------------------------------------------------------------------
-//TRIED TO PUT IN VARIABLE A AS newAnswer; didn't work
-// String.prototype.replaceAt=function(index, char) {
-//     var a = this.split("");
-//     a[index] = char;
-//     return a.join("");
-// }
-//----------------------------------------------------------
-//DIDN'T WORK WHEN I TRIED TO USE THESE VARIABLES AND PUT replaceAll instead of replaceAt down below defining var newAnswer
-// function replaceAll(answer, answerArray, userChoice) {
-    // return key.replace(new RegExp("_", 'g'), userChoice);
-// }
-// -------------------------------------------------------------------------------------------------------
-//TRIED TO PUT IN answerArray FOR str1 AND userChoice for str2
-// String.prototype.replaceAll = function(answerArray, userChoice, ignore) 
-// {
-//     return this.replace(new RegExp(answerArray.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(userChoice)=="userChoice")?userChoice.replace(/\$/g,"$$$$"):userChoice);
-// } 
-//TRIED THIS AND TRIED TO REPLACE replaceAt below with replaceAll AND IT SAID THAT WASN'T A FUNCTION
-// String.prototype.replaceAll = function(search, replacement) {
-//     var target = this;
-//     return target.split(search).join(replacement);
-// };
-String.prototype.replaceAt=function(index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
-// //Call out function to guess letters
- function checkLetters(userChoice) {
-     guessedLetters.push(userChoice)
- 
-    //  console.log(newAnswer);
-     answerArray = document.getElementById('currentWord').innerText;
-     console.log(answerArray);
-     var newAnswer=answerArray.replaceAt(answer.indexOf(userChoice),userChoice);
-    
-    document.getElementById("currentWord").innerHTML = newAnswer;
- }
-
-//Give 7 letter guesses and push to empty array 
-// answer.indexOf()
-
-//If guessed letter is correct, then join correct letter with "_" on answer
-    if (guessedLetters === true){
-        document.getElementbyId("currentWord").innerHTML = answerArray.join (answer["_"]);
-    }
-        //alert to guess another letter
-        // alert("Good job! Guess another letter!");
-    // } 
-    // else if {
-        // alert ("No. Try again! Guess the word! Type your letter. You have " + (7-[j]) + "guesses remaining!");
-    //Put wrong guessed letter below "Letters Guessed" 
-        // document.getElementById=("guessedLetters").innerHTML;
-    //Put remaining guesses under "Guesses remaining"
-        // document.getElementById="remainingGuesses").(j-7).innerHTML;
+//Take input for user guess
+    // document.addEventListener('keypress', (event) => {
+    //     var keyword = String.fromCharCode(event.keyCode);
+        // console.log(true);
+    // )
+// Get user guess
+    // if(answer.indexOf(keyword) > -1) {
+        // console.log(true);
+        //add to right words array
+        // rightGuess.push(keyword);
+        //replace underscore with right letter
+        // underScore[answer.indexOf(keyword)] = keyword;
+        // docUnderScore[0].innerHTML = underScore.join('');
+        // docrightGuess[0].innerHTML = rightGuess.join(''); 
+        //check to see if user word matches guesses
+    //     if(underScore.join('') == answer) {
+    //         alert("You Win!");
+    //     }
     // }
-// }
-// }
+    //     else 
+    //     {
+    //     wrongGuess.push(keyword);
+    //     docwrongGuess[0].innerHTML=wrongGuess;
+    //     }
+    // })
+
+    // docrightGuess[0].innerHTML = generateUnderscore().join('');
+
+//Check to see if user guess is right
+
+
+// guessedLetters = []; //array for letters guessed
+// var startBtn = document.getElementById('startBtn');
+// var youWin = 0;
+// var youLose = 0;
+// var remainingGuesses = 7;
+// var answer;
+// var answerArray;
+// var newAnswer;
+
 // //Game win, track wins, and restart new word
 //     if (answer = true) && (j < 7){        
 //         alert("#youwin-image");
