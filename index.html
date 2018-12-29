@@ -11,30 +11,39 @@
 <!-- Latest compiled and minified JavaScript -->
 <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
 </head>
 
 <body>
-
-    <img id="title-image" src="assets/images/Word-Guess-Banner2.png" alt="Word Guess Title Image" />
+    <div id="container">
+        <h1><span>Word Guess Game</span></h1>
+    
+        <span><img src="assets/images/Screen-Shot-2015-12-03-at-8.23.43-AM-1.png" alt="coffee cup image"></span>
+    
+        <button type="button" id="startBtn" onclick="initialize()">START</button>
+    
+        <h2>Café Style</h2>
+    </div>
+    
     <div id = "hello"></div>
 
         <img id="youwin-image" src="assets/images/YouWin.jpg" alt="Winning Image" />
         <img id="gameover-image" src="assets/images/gameover.png" alt="Game Over Image" />
         <h2 id="pressKeyTryAgain">Press Any Key to Try Again!</h2>
 
-        <h2>Guess what letter I'm thinking of. Press the Start Button to Get Started!</h2>
-        <button type="button" id="startBtn" onclick="initialize()">START</button>
+        <h3>Guess what letter I'm thinking of. Press the Start Button to Get Started!</h3>
+        
         <h4>Wins</h4>
         <h5 id="totalWins"></h5>
         <h4>Losses</h4>
         <h5 id="totalLosses"></h5>
         <h4>Current Word</h4>
-        <h3 id="currentWord"></h3>
+        <h5 id="currentWord"></h5>
         <h4>Guesses Remaining</h4>
         <h6 id="remainingGuesses"></h6>
         <h4>Letters Guessed</h4>
-        <h3 id="guessedLetters"></h3>
+        <h5 id="guessedLetters"></h5>
 
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
