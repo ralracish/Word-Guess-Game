@@ -1,14 +1,8 @@
 //Javascript Document
-// alert("Hello " + "name");
+alert("Hello. Do you like games?");
 //Ask the person's name and say hello
-// var name=prompt("What's your name")
-// alert("Hello " + name);
-// document.getElementById("hello").innerText=name;
-
-
-// //Start the game
-
-
+var name=prompt("What's your name")
+alert("Hello " + name);
 
 // //Set array of possible coffeeshop words
 var coffeeWords = ["coffee", "macchiato", "americano", "mocha", "beans", "cream", "sugar", "cappucino", "latte", "barista", "crema", "espresso", "filter", "redeye"];
