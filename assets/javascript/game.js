@@ -1,97 +1,180 @@
 //Javascript Document
+// alert("Hello " + "name");
 //Ask the person's name and say hello
-// var name=prompt("What's your name");
-// alert("Hello " + name + ". Play the game!");
+// var name=prompt("What's your name")
+// alert("Hello " + name);
+// document.getElementById("hello").innerText=name;
 
 
-// Set array of possible coffeeshop words
-    var word = ["mocha", "beans", "cream", "sugar", "crema", "filter", "cup", "tea", "splenda","roast", "body", "blend","drip","flavor"];
-// Choose word randomly
-    var choice = Math.floor(Math.random() * word.length);
-    var answer = word[choice];
-//Other variables
-    var rightGuess = [];
-    var wrongGuess = [];
-    var underScore = [];
-    // var youWin = 0;
-    // var youLose = 0;
-    // var remainingGuesses = 10;
+// //Start the game
 
 
-//DOM manipulation
-var docUnderScore = document.getElementsByClassName("underScore");
-var docrightGuess = document.getElementsByClassName("rightGuess");
-var docwrongGuess = document.getElementsByClassName("wrongGuess");
-var docyouWin = document.getElementsByClassName("wins");
-var docyouLose = document.getElementsByClassName("losses");
 
-//Testing
-console.log(answer);
+// //Set array of possible coffeeshop words
+var coffeeWords = ["coffee", "macchiato", "americano", "mocha", "beans", "cream", "sugar", "cappucino", "latte", "barista", "crema", "espresso", "filter", "redeye"];
+var guessedLetters = ""; //array for letters guessed
+var answer = "";
+var rightLetters = [];
+var numBlanks = 0;
+var blanksAndRightLetters = [];
+var wrongLetters = [];
+var userChoice = [];
+var youWin = 0
+var youLose = 0
+var guessesLeft = 10
 
-//Create underscores based on length of word
-    var generateUnderscore = () => {
-        for(var i = 0; i < answer.length; i++){
-            underScore.push(' _ ');
-        }
-        return underScore;
+// ------------------------------------------------------------------------------------------------------------------------------------------
+function startGame() {
+
+guessesLeft = 10;
+
+// //Pick a random word from the array and set up underscores
+
+    choice = Math.floor(Math.random()*coffeeWords.length);
+    answer = coffeeWords[choice];
+    rightLetters = answer.split("");
+    numBlanks = rightLetters.length;
+
+    console.log (answer);
+
+    blanksAndRightLetters = [];
+
+    wrongLetters = [];
+
+for (var i = 0; i < numBlanks; i++) {
+    blanksAndRightLetters.push("_");
+  }
+
+    console.log(blanksAndRightLetters)
+
+// Reprints the guessesLeft to 10.
+document.getElementById("guessesLeft").innerHTML = guessesLeft;
+// Prints the blanks at the beginning of each round in the HTML.
+document.getElementById("numBlanks").innerHTML = blanksAndRightLetters.join(" ");
+// Clears the wrong guesses from the previous round.
+document.getElementById("wrongGuess").innerHTML = wrongLetters.join(" ");
+}
+
+function checkLetters(letter) {
+
+    // This boolean will be toggled based on whether or not
+  // a user letter is found anywhere in the word.
+    letterInWord = false;
+
+  // Check if a letter exists inside the array at all.
+  for (var i = 0; i < numBlanks; i++) {
+
+    if (answer[i] === letter) {
+
+      // If the letter exists then toggle this boolean to true.
+      // This will be used in the next step.
+    letterInWord = true;
     }
-// console.log(generateUnderscore());
+  }
+   // If the letter exists somewhere in the word,
+  // then figure out exactly where (which indices).
+  if (letterInWord) {
 
-//Take input for user guess
-    document.addEventListener('keypress', (event) => {
-        var keyword = String.fromCharCode(event.keyCode);
-        // console.log(true);
-    // )
-// Get user guess
-    if(answer.indexOf(keyword) > -1) {
-        // console.log(true);
-        //add to right words array
-        rightGuess.push(keyword);
-        //replace underscore with right letter
-        underScore[answer.indexOf(keyword)] = keyword;
-        docUnderScore[0].innerHTML = underScore.join('');
-        docrightGuess[0].innerHTML = rightGuess.join(''); 
-        //check to see if user word matches guesses
-        if(underScore.join('') == answer) {
-            alert("You Win!");
-            // youWin = youWin++;
-            // docyouWin[0].innerHTML = youWin.join('');
-            // reset();
-        }
+    // Loop through the word
+    for (var j = 0; j < numBlanks; j++) {
+
+      // Populate the blanksAndRightLetters with every instance of the letter.
+      if (answer[j] === letter) {
+
+        // Here we set specific blank spaces to equal the correct letter
+        // when there is a match.
+        blanksAndRightLetters[j] = letter;
+      }
     }
-        else 
-        {
-        wrongGuess.push(keyword);
-        docwrongGuess[0].innerHTML=wrongGuess;
-        // if 
-            // wrongGuess > 9 
-            // {
-            // youLose = youLose++''
-            // docyouLose[0].innerHTML = youLose.join('');
-            // reset();
-        // }
-        }
-    })
 
-    docrightGuess[0].innerHTML = generateUnderscore().join('');
-    
-    
-
-//Check to see if user guess is right
+    // Log the current blanks and rightLetters for testing.
+    console.log(blanksAndRightLetters);
+  }
 
 
-// guessedLetters = []; //array for letters guessed
-// var startBtn = document.getElementById('startBtn');
+    else {
 
+    // Then we add the letter to the list of wrong letters.
+    wrongLetters.push(letter);
 
-// //Game win, track wins, and restart new word
-//     if (answer = true) && (j < 7){        
-//         alert("#youwin-image");
-//         youWin = youWin++;
-//         guessLetters;
-//     }
-// //Game lose, track losses, and restart new word
-//     else {
-//         alert("#gameover-image")
-//         youLose = youLose--;
-//         guessLetters;
+    // We also subtract one of the guesses.
+    guessesLeft--;
+
+    }
+
+}
+
+    // roundComplete() function
+    // Here we will have all of the code that needs to be run after each guess is made.
+    function roundComplete() {
+
+    // First, log an initial status update in the console
+    // telling us how many wins, losses, and guesses are left.
+    console.log("wins" + youWin + " | losses " + youLose + " | guessesLeft " + guessesLeft);
+  
+    // HTML UPDATES
+    // ============
+  
+    // Update the HTML to reflect the new number of guesses.
+    document.getElementById("guessesLeft").innerHTML = guessesLeft;
+  
+    // This will print the array of guesses and blanks onto the page.
+    document.getElementById("numBlanks").innerHTML = blanksAndRightLetters.join("_");
+  
+    // This will print the wrong guesses onto the page.
+    document.getElementById("wrongGuess").innerHTML = wrongLetters.join(" ");
+  
+    // If our hangman string equals the solution.
+    // (meaning that we guessed all the letters to match the solution)...
+    if (rightLetters.toString() === blanksAndRightLetters.toString()) {
+  
+      // Add to the win counter
+      youWin++;
+  
+      // Give the user an alert
+      alert("You win!");
+  
+      // Update the win counter in the HTML
+      document.getElementById("wins").innerHTML = youWin;
+  
+      // Restart the game
+      startGame();
+    }
+  
+    // If we've run out of guesses
+    else if (guessesLeft === 0) {
+  
+      // Add to the loss counter
+      youLose++;
+  
+      // Give the user an alert
+      alert("You lose");
+  
+      // Update the loss counter in the HTML
+      document.getElementById("losses").innerHTML = youLose;
+  
+      // Restart the game
+      startGame();
+  
+    }
+  
+  }
+  
+  // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
+  // ==================================================================
+  
+  // Starts the Game by running the startGame() function
+  startGame();
+  
+  // Then initiates the function for capturing key clicks.
+  document.onkeyup = function(event) {
+  
+    // Converts all key clicks to lowercase letters.
+    guessedLetters = String.fromCharCode(event.which).toLowerCase();
+  
+    // Runs the code to check for correct guesses.
+    checkLetters(guessedLetters);
+  
+    // Runs the code that ends each round.
+    roundComplete();
+  };

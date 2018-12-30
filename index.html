@@ -10,46 +10,49 @@
     
 <!-- Latest compiled and minified JavaScript -->
 <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<!-- Bootstrap CDN -->
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
 </head>
+<header><strong>Word Guess Game</strong>
+    <img src="assets/images/Screen-Shot-2015-12-03-at-8.23.43-AM-1.png" alt="coffee cup image">
+</header>
 
 <body>
     <div class = "container">
         <div class="row">
-        <div class = "col-sm-4 col-md-4 col-lg-4"><h1>Word Guess Game</h1></div>
+        <div class = "col-sm-4 col-md-4 col lg 4"></div>
         <div class = "col-sm-4 col-md-4 col lg-4"><h2>Café Style</h2></div>
-        <div class = "col-sm-4 col-md-4 col-lg-4"><img src="assets/images/Screen-Shot-2015-12-03-at-8.23.43-AM-1.png" alt="coffee cup image"></div>
+        <div class = "col-sm-4 col-md-4 col-lg-4"></div>
         </div>
     </div>
+    
     <div id = "container">
         <h3>Press a letter to Guess the Word!</h3>
         <br>
-        <div class="underScore"></div>
+        <div id="numBlanks">_ _ _ _ _ _ _ _ _ _</div>
         <br>
         <br>
-        <div class="rightGuess">Right Guess</div>
+        <div id="wrongGuess">Wrong Letters Guessed</div>
         <br>
         <br>
-        <div class="wrongGuess">Wrong Letters Guessed</div>
+        <div id="guessesLeft">Guesses Remaining</div>
         <br>
         <br>
-        <div class="guessesLeft">Guesses Remaining</div>
+        <div id="wins">Wins</div>
         <br>
         <br>
-        <div class="wins">Wins</div>
-        <br>
-        <br>
-        <div class="losses">Losses</div>
+        <div id="losses">Losses</div>
         <br>
         
     </div>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" -->
-    <!-- crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <!-- <script> -->
     <!-- resetGame(); -->
     <!-- updateDisplay(); -->
