@@ -113,7 +113,7 @@ function checkLetters(letter) {
     document.getElementById("guessesLeft").innerHTML = guessesLeft;
   
     // This will print the array of guesses and blanks onto the page.
-    document.getElementById("numBlanks").innerHTML = blanksAndRightLetters.join("_");
+    document.getElementById("numBlanks").innerHTML = blanksAndRightLetters.join(" ");
   
     // This will print the wrong guesses onto the page.
     document.getElementById("wrongGuess").innerHTML = wrongLetters.join(" ");
